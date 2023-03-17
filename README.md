@@ -10,6 +10,8 @@ Library functionality is added as needed. Because of this, the library does not 
 1) Google Drive
 2) Google Sheets
 
+<br/>
+
 ## 🚀 How to use
 Currently, the library provides two classes for interfacing with Google services:
 ```cs
@@ -21,9 +23,44 @@ Every class that interacts with Google takes a descendant of the **BaseClientSer
 
 For Drive API this is **DriveService**, for Sheets API **SheetsService**
 
+### Google Sheets
+```cs
+GoogleSheetOptions options = new GoogleSheetOptions
+{
+  SheetId = "Your Sheet id",
+  SheetRange = "Your Sheet Name"
+};
+
+// Reading data from Google Sheet
+GoogleSheetsManager googleSheetsManager = new GoogleSheetsManager(SheetsService);
+var data = await googleSheetsManager.ReadAsync(options);
+
+// Writing data into Google Sheets
+var dataToInsert = new List<IList<object>> { new object[] { "data", "data2", "data3" } };
+await googleSheetsManager.WriteAsync(options, dataToInsert);
+```
+
+## Google Drive
+### Get subfolders in the main folder
+```cs
+string mainFolderId = "Your main folder ID";
+GoogleDriveManager manager = new GoogleDriveManager(DriveService);
+List<FolderModel> folders = await manager.Folders.GetFolders(mainFolderId);
+ 
+foreach (FolderModel folder in folders)
+{
+  Console.WriteLine($"name {folder.Name} id: {folder.Id}");
+}
+```
+
+### Add Permissions to Folder
+```cs
+GoogleDriveManager manager = new GoogleDriveManager(DriveService);
+await manager.Permissions.AddUserToFile(PermissionRole.writer, PermissionsType.user, "mail@gmail.com", "Folder ID", false);
+```
+
+<br/>
+
 ## 🤝 Contributing
 Contributions, issues and feature requests are welcome.
 Feel free to check issues page if you want to contribute.
-
-
-
