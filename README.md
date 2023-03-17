@@ -23,7 +23,7 @@ Every class that interacts with Google takes a descendant of the **BaseClientSer
 
 For Drive API this is **DriveService**, for Sheets API **SheetsService**
 
-### Google Sheets
+## Google Sheets
 ```cs
 GoogleSheetOptions options = new GoogleSheetOptions
 {
@@ -41,7 +41,7 @@ await googleSheetsManager.WriteAsync(options, dataToInsert);
 ```
 
 ## Google Drive
-### Get subfolders in the main folder
+### Get subfolders in the main folder:
 ```cs
 string mainFolderId = "Your main folder ID";
 GoogleDriveManager manager = new GoogleDriveManager(DriveService);
@@ -53,10 +53,20 @@ foreach (FolderModel folder in folders)
 }
 ```
 
-### Add Permissions to Folder
+### Add Permissions to Folder:
 ```cs
 GoogleDriveManager manager = new GoogleDriveManager(DriveService);
 await manager.Permissions.AddUserToFile(PermissionRole.writer, PermissionsType.user, "mail@gmail.com", "Folder ID", false);
+```
+### To use the Service account for Google Drive:
+```cs
+GoogleCredential credential = GoogleCredential.FromFile(SecretPath).CreateScoped(DriveService.ScopeConstants.Drive);
+
+DriveService service = new DriveService(new BaseClientService.Initializer()
+{
+  HttpClientInitializer = credential,
+  ApplicationName = AppName
+});
 ```
 
 <br/>
