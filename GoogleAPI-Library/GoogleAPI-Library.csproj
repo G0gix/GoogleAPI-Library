@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>GoogleAPI_Library</RootNamespace>
+    <Nullable>disable</Nullable>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PackageProjectUrl>https://github.com/G0gix/Gogix-Libraries</PackageProjectUrl>
+  </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>GoogleAPI-Library</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>G0gix</Authors>
+        <RepositoryUrl>https://github.com/G0gix/Gogix-Libraries</RepositoryUrl>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>The library provides convenient access to Google services</Title>
+        <PackageReleaseNotes>Currently implemented basic actions with Google services</PackageReleaseNotes>
+    </PropertyGroup>
+		
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.57.0.2789" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.59.0.2909" />
+    <PackageReference Include="GoogleAPI-Library" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
